@@ -56,6 +56,10 @@ export default class AWSS3GenerateUploadURL {
         };
     }
 
+    public getS3Client(): S3 {
+        return this.s3Client;
+    }
+
     public static getInstance(
         awsRegion: string,
         awsAccessKeyID: string,
