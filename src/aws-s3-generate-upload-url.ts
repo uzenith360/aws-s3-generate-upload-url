@@ -37,7 +37,7 @@ export default class AWSS3GenerateUploadURL {
         );
     }
 
-    generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string): UploadURLResult {
+    generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string, metadata?: Record<string, unknown>): UploadURLResult {
         const key: string = `${!!folderName ? folderName + '/' : ''}${fileName}.${extension}`;
         const signedURL: string = this.s3Client.getSignedUrl(
             'putObject',
@@ -46,6 +46,7 @@ export default class AWSS3GenerateUploadURL {
                 Bucket: this.awsPublicBucketName,
                 ContentType: mimeType,
                 Expires: +this.awsFileUploadURLExpiration,
+                Metadata: metadata,
                 //   ACL: 'public-read',
             },
         );
