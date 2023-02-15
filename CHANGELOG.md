@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.1.0...v1.2.0) (2023-02-15)
+
+
+### Features
+
+* add metadata paramter to generateS3UploadUrl ([1c8dc17](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/1c8dc17749fbe3dfd6c24579f6d3c51c180a41ef))
+
 # [1.1.0](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.0.0...v1.1.0) (2023-02-09)
 
 
