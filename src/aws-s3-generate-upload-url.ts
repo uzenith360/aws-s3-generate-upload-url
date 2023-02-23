@@ -17,7 +17,7 @@ export default class AWSS3GenerateUploadURL {
         awsAccessKeyID: string,
         awsSecretAccessKey: string,
         awsPublicBucketName: string,
-        awsFileUploadURLExpiration: number
+        awsFileUploadURLExpiration: number,
     ) {
         this.awsRegion = awsRegion;
         this.awsAccessKeyID = awsAccessKeyID;
