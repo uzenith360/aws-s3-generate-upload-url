@@ -9,7 +9,6 @@
         "module": "CommonJS",
         "moduleResolution": "Node",
         "outDir": "../lib/cjs",
-        "declarationDir": "../lib/cjs/types",
-        "types": ["node"]
+        "declarationDir": "../lib/cjs/types"
     }
 }
