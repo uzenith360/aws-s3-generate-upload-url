@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.2.0...v1.2.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* add types/node ([e301b39](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/e301b3991fdd7371e01981aafb95b08256188cd2))
+
 # [1.2.0](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.1.0...v1.2.0) (2023-02-15)
 
 
