@@ -1,3 +1,13 @@
+# [1.3.0](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.2.4...v1.3.0) (2024-01-25)
+
+
+### Features
+
+* upgrade to aws v3 ([6acd5c1](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/6acd5c1315e31c53bd694f0e0c3440ffe2897215))
+* upgrade to aws v3 ([5788457](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/578845751c23f4e6df7ae3571eafb51c5ff4e12a))
+* upgrade to aws v3 ([c67ccba](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/c67ccba27c3a7de3bb03c6cffc3e3307e7477772))
+* upgrade to aws v3 ([8fbfa93](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/8fbfa93aa74376a612f2d369962d4ba94af84476))
+
 ## [1.2.4](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.2.3...v1.2.4) (2023-02-23)
 
 
