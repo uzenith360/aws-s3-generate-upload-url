@@ -1,5 +1,6 @@
-import { S3 } from 'aws-sdk';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { UploadURLResult } from './upload-url-result.interface';
+import { GetObjectCommand, S3 } from '@aws-sdk/client-s3';
 
 export default class AWSS3GenerateUploadURL {
     private static _instance: AWSS3GenerateUploadURL;
@@ -25,30 +26,40 @@ export default class AWSS3GenerateUploadURL {
         this.awsPublicBucketName = awsPublicBucketName;
         this.awsFileUploadURLExpiration = awsFileUploadURLExpiration || 900;
 
-        this.s3Client = new S3(
-            {
-                region: this.awsRegion,
-                signatureVersion: "v4",
-                credentials: {
-                    accessKeyId: this.awsAccessKeyID,
-                    secretAccessKey: this.awsSecretAccessKey,
-                },
+        this.s3Client = new S3({
+            region: this.awsRegion,
+
+            // The key signatureVersion is no longer supported in v3, and can be removed.
+            // @deprecated SDK v3 only supports signature v4.
+            // signatureVersion: "v4",
+
+            credentials: {
+                accessKeyId: this.awsAccessKeyID,
+                secretAccessKey: this.awsSecretAccessKey,
             },
-        );
+        });
     }
 
-    generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string, metadata?: Record<string, unknown>): UploadURLResult {
+    async generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string/*, metadata?: Record<string, unknown>*/): Promise<UploadURLResult> {
         const key: string = `${!!folderName ? folderName + '/' : ''}${fileName}.${extension}`;
-        const signedURL: string = this.s3Client.getSignedUrl(
-            'putObject',
-            {
+        const signedURL: string = await getSignedUrl(
+            this.s3Client,
+            // 'putObject',
+            new GetObjectCommand({
                 Key: key,
                 Bucket: this.awsPublicBucketName,
-                ContentType: mimeType,
-                Expires: +this.awsFileUploadURLExpiration,
-                Metadata: metadata,
-                //   ACL: 'public-read',
-            },
+                ResponseContentType: mimeType,
+                
+                // ContentType: mimeType,
+
+                // Expires: +this.awsFileUploadURLExpiration,
+                // Metadata: metadata,
+
+                // //   ACL: 'public-read',
+            }),
+            {
+                expiresIn: +this.awsFileUploadURLExpiration,
+            }
         );
 
         return {
