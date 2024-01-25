@@ -1,6 +1,6 @@
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { UploadURLResult } from './upload-url-result.interface';
-import { GetObjectCommand, S3 } from '@aws-sdk/client-s3';
+import { PutObjectCommand, S3 } from '@aws-sdk/client-s3';
 
 export class AWSS3GenerateUploadURL {
     private static _instance: AWSS3GenerateUploadURL;
@@ -40,22 +40,16 @@ export class AWSS3GenerateUploadURL {
         });
     }
 
-    async generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string/*, metadata?: Record<string, unknown>*/): Promise<UploadURLResult> {
+    async generateS3UploadUrl(fileName: string, mimeType: string, extension: string, folderName?: string, metadata?: Record<string, string>): Promise<UploadURLResult> {
         const key: string = `${!!folderName ? folderName + '/' : ''}${fileName}.${extension}`;
         const signedURL: string = await getSignedUrl(
             this.s3Client,
-            // 'putObject',
-            new GetObjectCommand({
+            new PutObjectCommand({
                 Key: key,
                 Bucket: this.awsPublicBucketName,
-                ResponseContentType: mimeType,
-                
-                // ContentType: mimeType,
-
-                // Expires: +this.awsFileUploadURLExpiration,
-                // Metadata: metadata,
-
-                // //   ACL: 'public-read',
+                ContentType: mimeType,
+                Metadata: metadata,
+                //   ACL: 'public-read',
             }),
             {
                 expiresIn: +this.awsFileUploadURLExpiration,
