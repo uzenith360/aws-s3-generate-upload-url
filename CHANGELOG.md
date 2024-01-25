@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.3.1...v1.3.2) (2024-01-25)
+
+
+### Bug Fixes
+
+* exports ([24208ff](https://github.com/uzenith360/aws-s3-generate-upload-url/commit/24208ffffdd4b496ead6a42c29df4ff06355a839))
+
 ## [1.3.1](https://github.com/uzenith360/aws-s3-generate-upload-url/compare/v1.3.0...v1.3.1) (2024-01-25)
 
 
