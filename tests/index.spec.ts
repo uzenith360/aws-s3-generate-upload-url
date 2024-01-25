@@ -1,7 +1,7 @@
 import 'mocha';
 import { assert } from 'chai';
 
-import AWSS3GenerateUploadURL from '../src/index';
+import { AWSS3GenerateUploadURL } from '../src/index';
 
 describe('AWSS3GenerateUploadURL Class', () => {
     it('should have a getInstance init method', () => {
